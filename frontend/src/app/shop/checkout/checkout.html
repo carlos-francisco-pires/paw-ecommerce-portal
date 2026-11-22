@@ -1,0 +1,60 @@
+<div class="checkout-container">
+  <h1>Finalizar Compra</h1>
+
+  <div *ngIf="itens.length === 0">
+    <p>O teu carrinho está vazio.</p>
+  </div>
+
+  <div *ngIf="itens.length > 0" class="checkout-grid">
+    <mat-card class="resumo-card">
+      <mat-card-header>
+        <mat-card-title>Resumo da Encomenda</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngFor="let item of itens" class="resumo-item">
+          <span>{{ item.nome }} x {{ item.quantidade }}</span>
+          <span>{{ item.preco * item.quantidade }} €</span>
+        </div>
+
+        <div class="resumo-linha">
+          <span>Subtotal</span>
+          <span>{{ getTotalProdutos() }} €</span>
+        </div>
+
+        <div class="resumo-linha">
+          <span>Entrega</span>
+          <span>{{ getCustoEntrega() }} €</span>
+        </div>
+
+        <div class="resumo-linha total">
+          <span>Total</span>
+          <span>{{ getTotalProdutos() + getCustoEntrega() }} €</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="metodo-card">
+      <mat-card-header>
+        <mat-card-title>Método de Entrega</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="checkoutForm">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Escolhe o método</mat-label>
+            <mat-select formControlName="metodoEntrega">
+              <mat-option *ngFor="let metodo of metodosEntrega" [value]="metodo._id">
+                {{ metodo.nome }} — {{ metodo.custo }} €
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+
+        <p class="erro" *ngIf="erro">{{ erro }}</p>
+
+        <button mat-raised-button color="primary" class="full-width" (click)="finalizarCompra()">
+          Confirmar Encomenda
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Environment variables (never commit secrets)
+.env
+
+# Uploaded images (keep folder only)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Course report (not published)
+*.pdf
+
+# Angular build / cache
+frontend/dist/
+frontend/.angular/
+
+# IDEs and OS files
+.idea/
+*.iml
+.DS_Store
+Thumbs.db

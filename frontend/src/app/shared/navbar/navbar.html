@@ -1,0 +1,39 @@
+<mat-toolbar color="primary" class="navbar">
+  <a routerLink="/" class="logo">
+    <img *ngIf="logotipoLoja" [src]="'http://localhost:3000' + logotipoLoja" class="logo-imagem" />
+    <span *ngIf="!logotipoLoja">{{ nomeLoja }}</span>
+  </a>
+
+  <span class="spacer"></span>
+
+  <a mat-button routerLink="/">Home</a>
+
+  <a mat-button routerLink="/carrinho">
+    <mat-icon>shopping_cart</mat-icon>
+    Carrinho
+    <span *ngIf="totalItensCarrinho > 0" class="badge">{{ totalItensCarrinho }}</span>
+  </a>
+
+  <a mat-button routerLink="/comparar">
+    <mat-icon>compare_arrows</mat-icon>
+    Comparar
+  </a>
+
+  <!-- Loja / Admin -->
+  <ng-container *ngIf="estaLogado && (roleAtual === 'loja' || roleAtual === 'admin')">
+    <a mat-button routerLink="/admin/categorias">Categorias</a>
+    <a mat-button routerLink="/admin/produtos">Produtos</a>
+    <a mat-button routerLink="/admin/encomendas">Encomendas</a>
+    <a mat-button routerLink="/admin/entregas">Entregas</a>
+  </ng-container>
+
+  <!-- Sessão -->
+  <a mat-button routerLink="/perfil" *ngIf="estaLogado">
+    <mat-icon>account_circle</mat-icon>
+    Perfil
+  </a>
+
+  <a mat-button routerLink="/login" *ngIf="!estaLogado">Entrar</a>
+  <a mat-button routerLink="/register" *ngIf="!estaLogado">Registar</a>
+  <button mat-button (click)="logout()" *ngIf="estaLogado">Sair</button>
+</mat-toolbar>

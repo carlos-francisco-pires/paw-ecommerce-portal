@@ -1,0 +1,90 @@
+<div class="detail-container">
+  <p *ngIf="carregando">A carregar produto...</p>
+
+  <div *ngIf="!carregando && !produto">
+    <p>Produto não encontrado.</p>
+  </div>
+
+  <mat-card *ngIf="!carregando && produto" class="detail-card">
+    <div class="produto-layout">
+      <!-- Galeria de imagens -->
+      <div class="galeria">
+        <div class="miniaturas">
+          <!-- Imagem principal -->
+          <img
+            *ngIf="produto.imagemDestaque"
+            [src]="'http://localhost:3000' + produto.imagemDestaque"
+            [class.selecionada]="imagemAtual === produto.imagemDestaque"
+            (click)="selecionarImagem(produto.imagemDestaque)"
+            alt="{{ produto.nome }}"
+          />
+
+          <!-- Imagens adicionais -->
+          <img
+            *ngFor="let imagem of produto.imagensAdicionais"
+            [src]="'http://localhost:3000' + imagem"
+            [class.selecionada]="imagemAtual === imagem"
+            (click)="selecionarImagem(imagem)"
+            alt="{{ produto.nome }}"
+          />
+        </div>
+
+        <!-- Imagem grande -->
+        <div class="imagem-principal" *ngIf="imagemAtual">
+          <img [src]="'http://localhost:3000' + imagemAtual" alt="{{ produto.nome }}" />
+        </div>
+      </div>
+
+      <!-- Informação do produto -->
+      <div class="produto-info">
+        <div class="categoria">
+          {{ produto.categoria?.nome }}
+        </div>
+
+        <h1>{{ produto.nome }}</h1>
+
+        <p class="descricao">
+          {{ produto.descricao }}
+        </p>
+
+        <div class="separador"></div>
+
+        <div class="config-section" *ngIf="produto.configuravel">
+          <h3>Configura o teu produto</h3>
+
+          <div *ngFor="let opcao of produto.opcoesConfiguracao" class="opcao-linha">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{ opcao.nome }}</mat-label>
+              <mat-select (selectionChange)="aoEscolherOpcao(opcao.nome, $event.value)">
+                <mat-option *ngFor="let valor of opcao.valores" [value]="valor.nome">
+                  {{ valor.nome }}
+                  <span *ngIf="valor.precoExtra > 0"> (+{{ valor.precoExtra }} €)</span>
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <p class="preco">{{ precoFinal }} €</p>
+
+        <p class="stock" *ngIf="produto.stock > 0">● Em stock — {{ produto.stock }} unidades</p>
+
+        <p class="stock sem-stock" *ngIf="produto.stock === 0">● Sem stock disponível</p>
+
+        <button
+          mat-raised-button
+          color="primary"
+          class="botao-carrinho"
+          [disabled]="produto.stock === 0"
+          (click)="adicionarAoCarrinho()"
+        >
+          Adicionar ao carrinho
+        </button>
+
+        <p *ngIf="adicionado" class="sucesso">✓ Produto adicionado ao carrinho!</p>
+
+        <p class="ean">EAN: {{ produto.ean }}</p>
+      </div>
+    </div>
+  </mat-card>
+</div>

@@ -1,0 +1,92 @@
+<div class="profile-container">
+  <h1>O meu Perfil</h1>
+
+  <p *ngIf="carregando">A carregar...</p>
+
+  <mat-card *ngIf="!carregando && utilizador" class="profile-card">
+    <mat-card-content>
+      <div class="campo">
+        <span class="label">Nome</span>
+        <strong>{{ utilizador.nome }}</strong>
+      </div>
+
+      <div class="campo">
+        <span class="label">Email</span>
+        <strong>{{ utilizador.email }}</strong>
+      </div>
+
+      <div class="campo">
+        <span class="label">Morada</span>
+        <strong>{{ utilizador.morada }}</strong>
+      </div>
+
+      <div class="campo">
+        <span class="label">Telefone</span>
+        <strong>{{ utilizador.telefone }}</strong>
+      </div>
+
+      <div class="campo">
+        <span class="label">Tipo de Conta</span>
+        <strong>{{ utilizador.role }}</strong>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <h2>Acessos Rápidos</h2>
+
+  <div class="perfil-links">
+    <!-- Cliente -->
+    <ng-container *ngIf="utilizador?.role === 'cliente'">
+      <a mat-raised-button color="primary" routerLink="/dashboard-cliente">
+        <mat-icon>bar_chart</mat-icon>
+        Dashboard
+      </a>
+      <a mat-raised-button color="primary" routerLink="/minhas-encomendas">
+        <mat-icon>receipt_long</mat-icon>
+        As Minhas Encomendas
+      </a>
+    </ng-container>
+
+    <!-- Estafeta -->
+    <ng-container *ngIf="utilizador?.role === 'estafeta'">
+      <a mat-raised-button color="primary" routerLink="/dashboard-entregas">
+        <mat-icon>bar_chart</mat-icon>
+        Dashboard
+      </a>
+      <a mat-raised-button color="primary" routerLink="/entregas">
+        <mat-icon>local_shipping</mat-icon>
+        As Minhas Entregas
+      </a>
+    </ng-container>
+
+    <!-- Loja -->
+    <ng-container *ngIf="utilizador?.role === 'loja' || utilizador?.role === 'admin'">
+      <a mat-raised-button color="primary" routerLink="/admin/dashboard-loja">
+        <mat-icon>bar_chart</mat-icon>
+        Dashboard Loja
+      </a>
+      <a mat-raised-button color="primary" routerLink="/admin/loja">
+        <mat-icon>store</mat-icon>
+        Configuração da Loja
+      </a>
+    </ng-container>
+
+    <!-- Só Admin -->
+    <ng-container *ngIf="utilizador?.role === 'admin'">
+      <a mat-raised-button color="primary" routerLink="/admin/dashboard">
+        <mat-icon>bar_chart</mat-icon>
+        Dashboard Admin
+      </a>
+      <a mat-raised-button color="primary" routerLink="/admin/utilizadores">
+        <mat-icon>people</mat-icon>
+        Gerir Utilizadores
+      </a>
+    </ng-container>
+
+    <!-- Todos -->
+    <a mat-stroked-button routerLink="/alterar-password">
+      <mat-icon>lock</mat-icon>
+      Alterar Password
+    </a>
+  </div>
+</div>

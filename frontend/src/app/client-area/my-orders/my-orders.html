@@ -1,0 +1,31 @@
+<div class="orders-container">
+  <h1>As minhas Encomendas</h1>
+
+  <p *ngIf="carregando">A carregar encomendas...</p>
+
+  <p *ngIf="!carregando && encomendas.length === 0">Ainda não fizeste nenhuma encomenda.</p>
+
+  <mat-card *ngFor="let encomenda of encomendas" class="encomenda-card">
+    <mat-card-header>
+      <mat-card-title>Encomenda #{{ encomenda._id.slice(-6) }}</mat-card-title>
+      <mat-card-subtitle>Estado: {{ encomenda.estado }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div *ngFor="let item of encomenda.itens" class="item-linha">
+        <span>{{ item.produto?.nome }} x{{ item.quantidade }}</span>
+        <span>{{ item.precoUnitario * item.quantidade }} €</span>
+      </div>
+
+      <div class="total-linha">
+        <strong>Total: {{ encomenda.total }} €</strong>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions *ngIf="podeCancel(encomenda)">
+      <button mat-stroked-button color="warn" (click)="cancelar(encomenda._id)">
+        Cancelar Encomenda
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

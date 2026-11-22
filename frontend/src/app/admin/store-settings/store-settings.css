@@ -1,0 +1,143 @@
+.manage-container {
+  min-height: calc(100vh - 64px);
+  padding: 40px 60px 60px;
+  background: #d7e8f5;
+  box-sizing: border-box;
+}
+
+.manage-container h1 {
+  margin: 0 0 30px;
+  font-size: 30px;
+  font-weight: 600;
+  color: #17324d;
+}
+
+/* CARTÃO */
+
+.form-card {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 12px;
+  background: #f8fbfd;
+  box-shadow: 0 4px 16px rgba(30, 70, 100, 0.12);
+}
+
+.form-card mat-card-header {
+  padding: 24px 28px 12px;
+}
+
+.form-card mat-card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #17324d;
+}
+
+.form-card mat-card-content {
+  padding: 18px 28px 28px;
+}
+
+/* CAMPOS */
+
+.full-width {
+  width: 100%;
+}
+
+mat-form-field {
+  margin-bottom: 8px;
+}
+
+/* LOGOTIPO */
+
+.logotipo-atual {
+  margin: 12px 0 22px;
+  padding: 16px;
+  border-radius: 8px;
+  background: #edf4f8;
+  border: 1px solid #d5e3ec;
+}
+
+.logotipo-atual p {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #496579;
+}
+
+.logotipo-preview {
+  display: block;
+  width: auto;
+  max-width: 220px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+/* UPLOAD */
+
+.upload-linha {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 18px 0 22px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  background: #f1f6fa;
+  border: 1px dashed #b8ccd9;
+}
+
+.upload-linha label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #36546d;
+  white-space: nowrap;
+}
+
+.upload-linha input[type="file"] {
+  font-size: 14px;
+  color: #526b7d;
+}
+
+/* MENSAGENS */
+
+.erro {
+  margin: 8px 0 14px;
+  padding: 10px 14px;
+  border-radius: 7px;
+  background: #fde8e8;
+  color: #b42318;
+  font-size: 14px;
+}
+
+.sucesso {
+  margin: 8px 0 14px;
+  padding: 10px 14px;
+  border-radius: 7px;
+  background: #e5f4ea;
+  color: #287542;
+  font-size: 14px;
+}
+
+/* BOTÃO */
+
+form button {
+  height: 44px;
+  min-width: 130px;
+  padding: 0 24px;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+/* CARREGAMENTO */
+
+.manage-container>p {
+  color: #496579;
+  font-size: 15px;
+}
+
+/* COMPUTADOR */
+
+@media (min-width: 1000px) {
+  .form-card {
+    margin-left: 10px;
+  }
+}

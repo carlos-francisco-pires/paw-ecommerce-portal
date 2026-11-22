@@ -1,0 +1,60 @@
+<div class="manage-container">
+  <h1>Gerir Categorias</h1>
+
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title>{{
+        categoriaEmEdicao ? 'Editar Categoria' : 'Nova Categoria'
+      }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="categoriaForm" (ngSubmit)="guardar()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="nome" />
+        </mat-form-field>
+
+        <p class="erro" *ngIf="erro">{{ erro }}</p>
+
+        <button mat-raised-button color="primary" type="submit">
+          {{ categoriaEmEdicao ? 'Guardar Alterações' : 'Criar Categoria' }}
+        </button>
+
+        <button
+          mat-stroked-button
+          type="button"
+          (click)="cancelarEdicao()"
+          *ngIf="categoriaEmEdicao"
+        >
+          Cancelar
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <h2>Categorias Existentes</h2>
+
+  <p *ngIf="carregando">A carregar...</p>
+
+  <table mat-table [dataSource]="categorias" *ngIf="!carregando" class="tabela-categorias">
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef>Nome</th>
+      <td mat-cell *matCellDef="let categoria">{{ categoria.nome }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="acoes">
+      <th mat-header-cell *matHeaderCellDef>Ações</th>
+      <td mat-cell *matCellDef="let categoria">
+        <button mat-icon-button color="primary" (click)="editar(categoria)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="apagar(categoria._id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['nome', 'acoes']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['nome', 'acoes']"></tr>
+  </table>
+</div>

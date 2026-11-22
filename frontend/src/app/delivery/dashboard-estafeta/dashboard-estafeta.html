@@ -1,0 +1,23 @@
+<div class="dashboard-container">
+  <h1>Dashboard - Estafeta</h1>
+
+  <p *ngIf="carregando">A carregar...</p>
+
+  <div class="cards-grid" *ngIf="!carregando">
+    <mat-card class="stat-card">
+      <mat-icon>local_shipping</mat-icon>
+      <div>
+        <span class="valor">{{ numEntregas }}</span>
+        <span class="label">Entregas Realizadas</span>
+      </div>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-icon>euro</mat-icon>
+      <div>
+        <span class="valor">{{ valorAReceber }} €</span>
+        <span class="label">Valor a Receber</span>
+      </div>
+    </mat-card>
+  </div>
+</div>

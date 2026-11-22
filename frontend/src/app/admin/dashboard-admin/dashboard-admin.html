@@ -1,0 +1,23 @@
+<div class="dashboard-container">
+  <h1>Dashboard - Administrador</h1>
+
+  <p *ngIf="carregando">A carregar...</p>
+
+  <div class="cards-grid" *ngIf="!carregando">
+    <mat-card class="stat-card">
+      <mat-icon>people</mat-icon>
+      <div>
+        <span class="valor">{{ numUtilizadores }}</span>
+        <span class="label">Utilizadores</span>
+      </div>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-icon>receipt_long</mat-icon>
+      <div>
+        <span class="valor">{{ totalEncomendas }}</span>
+        <span class="label">Encomendas Totais</span>
+      </div>
+    </mat-card>
+  </div>
+</div>

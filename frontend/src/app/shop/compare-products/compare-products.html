@@ -1,0 +1,62 @@
+<div class="compare-container">
+  <h1>Comparar Produtos</h1>
+
+  <p *ngIf="produtos.length === 0">
+    Ainda não escolheste produtos para comparar. Vai à Home e clica em "Comparar" nos produtos que
+    queres.
+  </p>
+
+  <div *ngIf="produtos.length > 0">
+    <button mat-stroked-button color="warn" (click)="limpar()" class="botao-limpar">
+      Limpar Comparação
+    </button>
+
+    <table class="tabela-comparacao">
+      <tr>
+        <th>Característica</th>
+        <th *ngFor="let produto of produtos">
+          {{ produto.nome }}
+          <button mat-icon-button color="warn" (click)="remover(produto._id)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </th>
+      </tr>
+
+      <tr>
+        <td>Imagem</td>
+        <td *ngFor="let produto of produtos">
+          <img
+            *ngIf="produto.imagemDestaque"
+            [src]="'http://localhost:3000' + produto.imagemDestaque"
+            class="imagem-comparacao"
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <td>Preço</td>
+        <td *ngFor="let produto of produtos">{{ produto.preco }} €</td>
+      </tr>
+
+      <tr>
+        <td>Descrição</td>
+        <td *ngFor="let produto of produtos">{{ produto.descricao }}</td>
+      </tr>
+
+      <tr>
+        <td>EAN</td>
+        <td *ngFor="let produto of produtos">{{ produto.ean }}</td>
+      </tr>
+
+      <tr>
+        <td>Stock</td>
+        <td *ngFor="let produto of produtos">{{ produto.stock }}</td>
+      </tr>
+
+      <tr>
+        <td>Configurável</td>
+        <td *ngFor="let produto of produtos">{{ produto.configuravel ? 'Sim' : 'Não' }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="manage-container">
+  <h1>Gerir Encomendas</h1>
+
+  <p *ngIf="carregando">A carregar encomendas...</p>
+
+  <p *ngIf="!carregando && encomendas.length === 0">Ainda não há encomendas.</p>
+
+  <table
+    mat-table
+    [dataSource]="encomendas"
+    *ngIf="!carregando && encomendas.length > 0"
+    class="tabela-encomendas"
+  >
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Encomenda</th>
+      <td mat-cell *matCellDef="let encomenda">#{{ encomenda._id.slice(-6) }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cliente">
+      <th mat-header-cell *matHeaderCellDef>Cliente</th>
+      <td mat-cell *matCellDef="let encomenda">{{ encomenda.cliente?.nome }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef>Total</th>
+      <td mat-cell *matCellDef="let encomenda">{{ encomenda.total }} €</td>
+    </ng-container>
+
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef>Estado</th>
+      <td mat-cell *matCellDef="let encomenda">{{ encomenda.estado }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="acoes">
+      <th mat-header-cell *matHeaderCellDef>Ações</th>
+      <td mat-cell *matCellDef="let encomenda">
+        <button
+          mat-raised-button
+          color="primary"
+          *ngIf="encomenda.estado === 'pendente'"
+          (click)="confirmar(encomenda._id)"
+        >
+          Confirmar
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['id', 'cliente', 'total', 'estado', 'acoes']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['id', 'cliente', 'total', 'estado', 'acoes']"></tr>
+  </table>
+</div>

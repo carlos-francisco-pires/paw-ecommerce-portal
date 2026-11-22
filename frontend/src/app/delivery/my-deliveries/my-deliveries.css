@@ -1,0 +1,279 @@
+.deliveries-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 30px;
+    background: #dce8f2;
+    min-height: calc(100vh - 64px);
+}
+
+/* Cabeçalho */
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    margin: 0 0 6px;
+    font-size: 30px;
+    font-weight: 600;
+    color: #263746;
+}
+
+.page-header p {
+    margin: 0;
+    color: #607080;
+    font-size: 15px;
+}
+
+.delivery-count {
+    padding: 9px 16px;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #40576b;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(40, 70, 90, 0.08);
+}
+
+/* Loading */
+
+.loading {
+    text-align: center;
+    padding: 60px 0;
+    color: #607080;
+    font-size: 16px;
+}
+
+/* Sem entregas */
+
+.empty-state {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 60px 30px;
+    text-align: center;
+    box-shadow: 0 3px 14px rgba(40, 70, 90, 0.08);
+}
+
+.empty-state mat-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 48px;
+    color: #71869a;
+    margin-bottom: 12px;
+}
+
+.empty-state h2 {
+    margin: 0 0 8px;
+    font-size: 21px;
+    font-weight: 500;
+    color: #34495a;
+}
+
+.empty-state p {
+    margin: 0;
+    color: #71808e;
+}
+
+/* Lista */
+
+.entregas-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Cartão */
+
+.entrega-card {
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 3px 14px rgba(40, 70, 90, 0.09);
+    overflow: hidden;
+}
+
+/* Cabeçalho da encomenda */
+
+.entrega-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #e5ebef;
+}
+
+.label {
+    display: block;
+    margin-bottom: 4px;
+    color: #7a8996;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.entrega-header h2 {
+    margin: 0;
+    font-size: 21px;
+    font-weight: 600;
+    color: #2f4353;
+}
+
+.estado {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    border-radius: 20px;
+    background: #edf3f7;
+    color: #587083;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.estado mat-icon {
+    width: 17px;
+    height: 17px;
+    font-size: 17px;
+}
+
+/* Conteúdo */
+
+.entrega-card mat-card-content {
+    padding: 22px 24px 24px;
+}
+
+/* Informações */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.info-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    border-radius: 8px;
+    background: #f4f7f9;
+}
+
+.info-box mat-icon {
+    color: #607d92;
+}
+
+.info-box strong {
+    display: block;
+    color: #34495a;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Produtos */
+
+.produtos {
+    margin-bottom: 22px;
+}
+
+.produtos h3 {
+    margin: 0 0 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #405363;
+}
+
+.item-linha {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #edf0f2;
+    color: #4f606e;
+    font-size: 14px;
+}
+
+.item-linha {
+    border-bottom: none;
+}
+
+.quantidade {
+    margin-left: 8px;
+    color: #7b8994;
+    font-weight: 500;
+}
+
+/* Rodapé */
+
+.entrega-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 18px;
+    border-top: 1px solid #e1e7eb;
+}
+
+.total {
+    display: block;
+    margin-top: 3px;
+    color: #2f4353;
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.entrega-footer button {
+    height: 44px;
+    padding: 0 20px;
+    font-weight: 500;
+}
+
+.entrega-footer button mat-icon {
+    margin-right: 6px;
+}
+
+/* Telemóveis */
+
+@media (max-width: 700px) {
+
+    .deliveries-container {
+        padding: 25px 15px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .page-header h1 {
+        font-size: 26px;
+    }
+
+    .delivery-count {
+        display: none;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .entrega-header {
+        padding: 18px;
+    }
+
+    .entrega-card mat-card-content {
+        padding: 18px;
+    }
+
+    .entrega-footer {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .entrega-footer button {
+        width: 100%;
+    }
+}

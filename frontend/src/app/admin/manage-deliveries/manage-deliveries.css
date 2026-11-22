@@ -1,0 +1,147 @@
+.manage-container {
+  min-height: calc(100vh - 64px);
+  padding: 40px 60px 60px;
+  background: #d7e8f5;
+  box-sizing: border-box;
+}
+
+.manage-container h1 {
+  margin: 0 0 30px;
+  font-size: 30px;
+  font-weight: 600;
+  color: #17324d;
+}
+
+.manage-container h2 {
+  margin: 40px 0 18px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #17324d;
+}
+
+/* FORMULÁRIO */
+
+.form-card {
+  max-width: 700px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(30, 70, 100, 0.12);
+  background: #f8fbfd;
+}
+
+.form-card mat-card-header {
+  padding: 22px 26px 10px;
+}
+
+.form-card mat-card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #17324d;
+}
+
+.form-card mat-card-content {
+  padding: 18px 26px 26px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+mat-form-field {
+  margin-bottom: 8px;
+}
+
+/* BOTÕES */
+
+form button {
+  height: 44px;
+  margin-right: 10px;
+  padding: 0 20px;
+  font-weight: 500;
+}
+
+form button[type="submit"] {
+  min-width: 170px;
+}
+
+/* ERRO */
+
+.erro {
+  margin: 4px 0 14px;
+  padding: 10px 14px;
+  border-radius: 7px;
+  background: #fde8e8;
+  color: #b42318;
+  font-size: 14px;
+}
+
+/* TABELA */
+
+.tabela-metodos {
+  width: 100%;
+  max-width: 900px;
+  background: #f8fbfd;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(30, 70, 100, 0.12);
+}
+
+.tabela-metodos th {
+  height: 52px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #36546d;
+  background: #edf4f8;
+}
+
+.tabela-metodos td {
+  height: 58px;
+  font-size: 15px;
+  color: #34495e;
+}
+
+.tabela-metodos tr {
+  transition: background-color 0.15s ease;
+}
+
+.tabela-metodos tr:hover {
+  background-color: #eef6fb;
+}
+
+/* COLUNA DO CUSTO */
+
+.tabela-metodos th:nth-child(2),
+.tabela-metodos td:nth-child(2) {
+  width: 180px;
+}
+
+/* COLUNA DAS AÇÕES */
+
+.tabela-metodos th:last-child,
+.tabela-metodos td:last-child {
+  width: 150px;
+  text-align: center;
+}
+
+.tabela-metodos button {
+  margin: 0 2px;
+}
+
+/* ESTADO DE CARREGAMENTO */
+
+.manage-container>p {
+  color: #496579;
+  font-size: 15px;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 800px) {
+  .manage-container {
+    padding: 30px 25px 40px;
+  }
+
+  .form-card,
+  .tabela-metodos {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,41 @@
+<div class="dashboard-container">
+  <h1>Dashboard - Loja</h1>
+
+  <p *ngIf="carregando">A carregar...</p>
+
+  <div class="cards-grid" *ngIf="!carregando">
+    <mat-card class="stat-card">
+      <mat-icon>receipt_long</mat-icon>
+      <div>
+        <span class="valor">{{ numEncomendas }}</span>
+        <span class="label">Encomendas Totais</span>
+      </div>
+    </mat-card>
+  </div>
+
+  <h2 *ngIf="!carregando">Produtos Mais Vendidos</h2>
+
+  <mat-card *ngIf="!carregando && produtosMaisVendidos.length === 0">
+    <mat-card-content>Ainda não há dados suficientes.</mat-card-content>
+  </mat-card>
+
+  <table
+    mat-table
+    [dataSource]="produtosMaisVendidos"
+    *ngIf="!carregando && produtosMaisVendidos.length > 0"
+    class="tabela-ranking"
+  >
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef>Produto</th>
+      <td mat-cell *matCellDef="let item">{{ item.nome }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="totalVendido">
+      <th mat-header-cell *matHeaderCellDef>Unidades Vendidas</th>
+      <td mat-cell *matCellDef="let item">{{ item.totalVendido }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['nome', 'totalVendido']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['nome', 'totalVendido']"></tr>
+  </table>
+</div>

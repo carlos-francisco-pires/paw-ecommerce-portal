@@ -1,0 +1,179 @@
+.dashboard-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 30px;
+    min-height: calc(100vh - 64px);
+    background: #dce8f2;
+    box-sizing: border-box;
+}
+
+.dashboard-container h1 {
+    margin: 0 0 30px;
+    font-size: 30px;
+    font-weight: 600;
+    color: #263746;
+}
+
+.dashboard-container>p {
+    text-align: center;
+    margin-top: 60px;
+    color: #607080;
+}
+
+/* Estatísticas */
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-bottom: 38px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    min-height: 135px;
+    padding: 25px;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 3px 14px rgba(40, 70, 90, 0.09);
+    box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(40, 70, 90, 0.13);
+}
+
+.stat-card mat-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 52px;
+    color: #607d92;
+}
+
+.stat-card>div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.valor {
+    font-size: 32px;
+    line-height: 1;
+    font-weight: 600;
+    color: #2f4353;
+}
+
+.label {
+    font-size: 14px;
+    color: #71808e;
+}
+
+/* Ranking */
+
+.dashboard-container h2 {
+    margin: 0 0 16px;
+    font-size: 21px;
+    font-weight: 600;
+    color: #34495a;
+}
+
+/* Mensagem sem dados */
+
+.dashboard-container>mat-card {
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 3px 14px rgba(40, 70, 90, 0.08);
+}
+
+.dashboard-container>mat-card mat-card-content {
+    padding: 22px;
+    color: #687986;
+    font-size: 14px;
+}
+
+/* Tabela */
+
+.tabela-ranking {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 14px rgba(40, 70, 90, 0.09);
+}
+
+/* Cabeçalho da tabela */
+
+.tabela-ranking th {
+    height: 52px;
+    background: #eef3f7;
+    color: #405363;
+    font-size: 13px;
+    font-weight: 600;
+    border-bottom: 1px solid #dce4e9;
+}
+
+/* Células */
+
+.tabela-ranking td {
+    height: 58px;
+    color: #4c5d6b;
+    font-size: 14px;
+    border-bottom: 1px solid #edf0f2;
+}
+
+.tabela-ranking tr:last-child td {
+    border-bottom: none;
+}
+
+/* Hover */
+
+.tabela-ranking tr.mat-row:hover {
+    background: #f6f9fb;
+}
+
+/* Alinhamento */
+
+.tabela-ranking th:first-child,
+.tabela-ranking td:first-child {
+    padding-left: 24px;
+}
+
+.tabela-ranking th:last-child,
+.tabela-ranking td:last-child {
+    padding-right: 24px;
+}
+
+/* Número de unidades */
+
+.tabela-ranking td:last-child {
+    font-weight: 600;
+    color: #344f63;
+}
+
+/* Telemóveis */
+
+@media (max-width: 700px) {
+
+    .dashboard-container {
+        padding: 25px 15px;
+    }
+
+    .dashboard-container h1 {
+        font-size: 26px;
+    }
+
+    .stat-card {
+        min-height: 120px;
+    }
+
+    .tabela-ranking {
+        min-width: 550px;
+    }
+
+    .dashboard-container {
+        overflow-x: auto;
+    }
+}

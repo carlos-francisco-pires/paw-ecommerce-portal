@@ -1,0 +1,97 @@
+<div class="home-container">
+  <div class="hero">
+    <h1>Bem-vindo à TechESTG</h1>
+    <p>A Melhor Loja de Material Informático</p>
+  </div>
+
+  <div class="status-card" *ngIf="authService.isLoggedIn()">
+    <p>
+      Sessão iniciada como <strong>{{ authService.getRole() }}</strong>
+    </p>
+    <button mat-stroked-button color="warn" (click)="authService.logout()">Terminar sessão</button>
+  </div>
+
+  <div class="status-card" *ngIf="!authService.isLoggedIn()">
+    <p>Ainda não tens sessão iniciada.</p>
+    <a mat-raised-button color="primary" routerLink="/login"> Iniciar Sessão </a>
+  </div>
+
+  <h2>Produtos</h2>
+
+  <div class="filtros">
+    <mat-form-field appearance="outline">
+      <mat-label>Pesquisar</mat-label>
+      <input
+        matInput
+        [(ngModel)]="search"
+        (keyup.enter)="aoMudarFiltros()"
+        placeholder="Nome ou EAN"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Categoria</mat-label>
+      <mat-select [(ngModel)]="categoriaSelecionada" (selectionChange)="aoMudarFiltros()">
+        <mat-option value="">Todas</mat-option>
+        <mat-option *ngFor="let categoria of categorias" [value]="categoria._id">
+          {{ categoria.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Ordenar por</mat-label>
+      <mat-select [(ngModel)]="sort" (selectionChange)="aoMudarFiltros()">
+        <mat-option value="">Relevância</mat-option>
+        <mat-option value="price_asc">Preço: mais baixo primeiro</mat-option>
+        <mat-option value="price_desc">Preço: mais alto primeiro</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="aoMudarFiltros()">Pesquisar</button>
+  </div>
+
+  <p *ngIf="carregando">A carregar produtos...</p>
+
+  <p *ngIf="!carregando && produtos.length === 0">Nenhum produto encontrado.</p>
+
+  <div class="produtos-grid">
+    <mat-card
+      *ngFor="let produto of produtos"
+      class="produto-card"
+      [routerLink]="['/produtos', produto._id]"
+    >
+      <img
+        *ngIf="produto.imagemDestaque"
+        [src]="'http://localhost:3000' + produto.imagemDestaque"
+        class="produto-imagem-card"
+      />
+      <mat-card-header>
+        <mat-card-title>{{ produto.nome }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ produto.descricao }}</p>
+        <p class="preco">{{ produto.preco }} €</p>
+        <p class="stock" *ngIf="produto.stock > 0">Em stock: {{ produto.stock }}</p>
+        <p class="stock sem-stock" *ngIf="produto.stock === 0">Sem stock</p>
+        <button mat-stroked-button (click)="aoComparar(produto, $event)">Comparar</button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="paginacao" *ngIf="totalPaginas > 1">
+    <button mat-icon-button (click)="irParaPagina(paginaAtual - 1)" [disabled]="paginaAtual === 1">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+
+    <span>Página {{ paginaAtual }} de {{ totalPaginas }}</span>
+
+    <button
+      mat-icon-button
+      (click)="irParaPagina(paginaAtual + 1)"
+      [disabled]="paginaAtual === totalPaginas"
+    >
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+</div>

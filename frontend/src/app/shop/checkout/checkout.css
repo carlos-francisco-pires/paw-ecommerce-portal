@@ -1,0 +1,177 @@
+.checkout-container {
+  min-height: calc(100vh - 64px);
+  padding: 35px 40px 60px;
+  background: #d7e6f0;
+}
+
+/* Título */
+
+.checkout-container h1 {
+  max-width: 1000px;
+  margin: 0 auto 28px;
+  font-size: 30px;
+  font-weight: 600;
+  color: #263238;
+}
+
+/* Layout */
+
+.checkout-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* Cards */
+
+.resumo-card,
+.metodo-card {
+  border-radius: 8px;
+  border: 1px solid #b8ccd8;
+  background: #eef5f9;
+  box-shadow: 0 2px 7px rgba(45, 75, 95, 0.12);
+}
+
+/* Cabeçalho */
+
+mat-card-header {
+  padding: 20px 22px 12px;
+}
+
+mat-card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #263238;
+}
+
+/* Conteúdo */
+
+mat-card-content {
+  padding: 8px 22px 22px;
+}
+
+/* Produtos do resumo */
+
+.resumo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+
+  padding: 11px 0;
+
+  color: #455a64;
+  font-size: 14px;
+}
+
+.resumo-item+.resumo-item {
+  border-top: 1px solid #d3e1e8;
+}
+
+/* Subtotal e entrega */
+
+.resumo-linha {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 11px 0;
+
+  color: #455a64;
+  font-size: 14px;
+}
+
+/* Total */
+
+.resumo-linha.total {
+  margin-top: 8px;
+  padding-top: 16px;
+
+  border-top: 1px solid #aec5d3;
+
+  color: #263238;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* Método de entrega */
+
+.full-width {
+  width: 100%;
+}
+
+.metodo-card mat-form-field {
+  margin-bottom: 5px;
+}
+
+.metodo-card button {
+  height: 46px;
+  margin-top: 8px;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Erro */
+
+.erro {
+  margin: 4px 0 12px;
+  padding: 9px 11px;
+
+  border-radius: 5px;
+
+  background: #fdecea;
+  color: #c62828;
+
+  font-size: 13px;
+}
+
+/* Carrinho vazio */
+
+.checkout-container>div>p {
+  color: #546e7a;
+}
+
+.checkout-container>div:first-of-type>p {
+  text-align: center;
+  margin-top: 80px;
+  font-size: 16px;
+}
+
+/* Desktop */
+
+@media (min-width: 900px) {
+  .metodo-card {
+    position: sticky;
+    top: 20px;
+  }
+}
+
+/* Telemóveis */
+
+@media (max-width: 700px) {
+  .checkout-container {
+    padding: 25px 15px;
+  }
+
+  .checkout-container h1 {
+    font-size: 26px;
+  }
+
+  .checkout-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resumo-card,
+  .metodo-card {
+    width: 100%;
+  }
+
+  .metodo-card {
+    position: static;
+  }
+}

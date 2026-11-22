@@ -1,0 +1,99 @@
+.dashboard-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 30px;
+    min-height: calc(100vh - 64px);
+    background: #dce8f2;
+}
+
+.dashboard-container h1 {
+    margin: 0 0 8px;
+    font-size: 30px;
+    font-weight: 600;
+    color: #263746;
+}
+
+.dashboard-container>p {
+    color: #607080;
+    font-size: 15px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+/* Cartões */
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    margin-top: 30px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    min-height: 140px;
+    padding: 25px;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 3px 14px rgba(40, 70, 90, 0.09);
+    box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(40, 70, 90, 0.13);
+}
+
+/* Ícones */
+
+.stat-card mat-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 52px;
+    color: #607d92;
+}
+
+/* Valores */
+
+.stat-card>div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.valor {
+    font-size: 32px;
+    line-height: 1;
+    font-weight: 600;
+    color: #2f4353;
+}
+
+.label {
+    font-size: 14px;
+    color: #71808e;
+}
+
+/* Telemóveis */
+
+@media (max-width: 700px) {
+
+    .dashboard-container {
+        padding: 25px 15px;
+    }
+
+    .dashboard-container h1 {
+        font-size: 26px;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .stat-card {
+        min-height: 120px;
+    }
+}

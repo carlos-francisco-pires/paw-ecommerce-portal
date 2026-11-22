@@ -1,0 +1,113 @@
+<div class="deliveries-container">
+  <h1>A Minha Entrega Atual</h1>
+
+  <mat-card *ngIf="entregaAtual" class="entrega-card entrega-ativa">
+    <div class="entrega-header">
+      <div>
+        <span class="label">ENCOMENDA</span>
+        <h2>#{{ entregaAtual._id.slice(-6) }}</h2>
+      </div>
+      <div class="estado">
+        <mat-icon>local_shipping</mat-icon>
+        Em Entrega
+      </div>
+    </div>
+
+    <mat-card-content>
+      <div class="info-grid">
+        <div class="info-box">
+          <mat-icon>location_on</mat-icon>
+          <div>
+            <span class="label">Morada de entrega</span>
+            <strong>{{ entregaAtual.cliente?.morada }}</strong>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <mat-icon>person</mat-icon>
+          <div>
+            <span class="label">Cliente</span>
+            <strong>{{ entregaAtual.cliente?.nome }}</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="entrega-footer">
+        <strong class="total">{{ entregaAtual.total }} €</strong>
+
+        <button mat-raised-button color="primary" (click)="entregar(entregaAtual._id)">
+          <mat-icon>check_circle</mat-icon>
+          Marcar como Entregue
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <p *ngIf="!carregando && !entregaAtual">Não tens nenhuma entrega em curso.</p>
+
+  <h1>Entregas Disponíveis</h1>
+
+  <div class="delivery-count">{{ disponiveis.length }} entrega(s)</div>
+
+  <p *ngIf="carregando">A carregar...</p>
+
+  <p *ngIf="!carregando && disponiveis.length === 0">Não há entregas disponíveis neste momento.</p>
+
+  <mat-card *ngFor="let encomenda of disponiveis" class="entrega-card">
+    <div class="entrega-header">
+      <div>
+        <span class="label">ENCOMENDA</span>
+        <h2>#{{ encomenda._id.slice(-6) }}</h2>
+      </div>
+      <div class="estado">
+        <mat-icon>schedule</mat-icon>
+        Pendente
+      </div>
+    </div>
+
+    <mat-card-content>
+      <div class="info-grid">
+        <div class="info-box">
+          <mat-icon>location_on</mat-icon>
+          <div>
+            <span class="label">Morada de entrega</span>
+            <strong>{{ encomenda.cliente?.morada }}</strong>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <mat-icon>person</mat-icon>
+          <div>
+            <span class="label">Cliente</span>
+            <strong>{{ encomenda.cliente?.nome }}</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="produtos">
+        <h3>Produtos</h3>
+        <div *ngFor="let item of encomenda.itens" class="item-linha">
+          <span>{{ item.produto?.nome }}</span>
+          <span class="quantidade">x{{ item.quantidade }}</span>
+        </div>
+      </div>
+
+      <div class="entrega-footer">
+        <div>
+          <span class="label">Total da encomenda</span>
+          <strong class="total">{{ encomenda.total }} €</strong>
+        </div>
+
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="aceitar(encomenda._id)"
+          [disabled]="entregaAtual"
+        >
+          <mat-icon>local_shipping</mat-icon>
+          Aceitar Entrega
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

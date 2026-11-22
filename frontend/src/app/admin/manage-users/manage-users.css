@@ -1,0 +1,114 @@
+.manage-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 30px;
+  min-height: calc(100vh - 64px);
+  background: #dce8f2;
+}
+
+.manage-container h1 {
+  margin: 0 0 30px;
+  font-size: 30px;
+  font-weight: 600;
+  color: #263746;
+}
+
+.manage-container>p {
+  color: #607080;
+  font-size: 15px;
+}
+
+/* Tabela */
+
+.tabela-utilizadores {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 14px rgba(40, 70, 90, 0.09);
+}
+
+/* Cabeçalho */
+
+.tabela-utilizadores th {
+  height: 52px;
+  background: #eef3f7;
+  color: #405363;
+  font-size: 13px;
+  font-weight: 600;
+  border-bottom: 1px solid #dce4e9;
+}
+
+/* Células */
+
+.tabela-utilizadores td {
+  height: 60px;
+  color: #4c5d6b;
+  font-size: 14px;
+  border-bottom: 1px solid #edf0f2;
+}
+
+.tabela-utilizadores tr td {
+  border-bottom: none;
+}
+
+/* Efeito ao passar por cima */
+
+.tabela-utilizadores tr.mat-row {
+  background: #f6f9fb;
+}
+
+/* Estado — badges */
+
+.estado-aprovado,
+.estado-pendente {
+  display: inline-block;
+  padding: 6px 11px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.estado-aprovado {
+  background: #e7f3eb;
+  color: #39704c;
+}
+
+.estado-pendente {
+  background: #fff3df;
+  color: #93651d;
+}
+
+/* Botão */
+
+.tabela-utilizadores button {
+  height: 38px;
+  padding: 0 18px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Colunas */
+
+.tabela-utilizadores th,
+.tabela-utilizadores td {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* Telemóveis */
+
+@media (max-width: 700px) {
+  .manage-container {
+    padding: 25px 15px;
+    overflow-x: auto;
+  }
+
+  .manage-container h1 {
+    font-size: 26px;
+  }
+
+  .tabela-utilizadores {
+    min-width: 750px;
+  }
+}
