@@ -1,0 +1,93 @@
+name: User story
+description: A user-facing change described from the point of view of a role.
+title: "USxx - "
+labels: ["user-story"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Replace `xx` in the title with the next story number. Before moving this story to **Sprint Backlog**, check the Definition of Ready in [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md#definition-of-ready).
+        After creating it, add the tasks as **sub-issues** (`USxx - Task name [2h]`), including a `USxx - QA review: test the acceptance criteria [0.5h]` task, and set the labels, project fields, milestone and parent epic.
+
+  - type: textarea
+    id: story
+    attributes:
+      label: User story
+      description: Keep the quote format.
+      value: |
+        > **As a** <role>
+        > **I want** <goal>
+        > **so that** <benefit>
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      value: |
+        | Area | Milestone | Depends on | Unblocks |
+        |---|---|---|---|
+        | Backend | v1.x | — | — |
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Context, affected files, open questions or dependencies (for example, new libraries that need approval).
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: Name and number each criterion. Each one must be testable.
+      value: |
+        **AC1 - Name**
+        **Given** ...
+        **When** ...
+        **Then** ...
+
+        **AC2 - Name**
+        **Given** ...
+        **When** ...
+        **Then** ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: dor
+    attributes:
+      label: Definition of Ready
+      value: |
+        - [ ] Story follows "As a / I want / so that"
+        - [ ] Acceptance criteria are named, numbered and testable
+        - [ ] Labels and project fields set (Area, Priority, Size, Estimate)
+        - [ ] Milestone and parent epic assigned
+        - [ ] Tasks created as sub-issues, with estimates in hours
+        - [ ] QA review task created
+        - [ ] Dependencies identified (new libraries approved)
+        - [ ] Fits in size L or smaller
+    validations:
+      required: true
+
+  - type: textarea
+    id: dod
+    attributes:
+      label: Definition of Done
+      description: Keep the common items and add the story-specific ones at the end.
+      value: |
+        - [ ] All acceptance criteria met
+        - [ ] Code self-reviewed
+        - [ ] QA review task closed (test steps and results in a comment)
+        - [ ] No errors in the browser console or server log
+        - [ ] No secrets committed
+        - [ ] README / Swagger updated if behaviour or API changed
+        - [ ] All sub-issues closed
+
+        Full Definition of Done: [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md#definition-of-done)
+    validations:
+      required: true

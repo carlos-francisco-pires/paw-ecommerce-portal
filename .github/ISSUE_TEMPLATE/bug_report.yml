@@ -1,0 +1,71 @@
+name: Bug report
+description: Something does not work as expected.
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What is wrong, in one or two sentences.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Log in as ...
+        2. Go to ...
+        3. Click ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+      description: Include error messages from the browser console or the server log if there are any.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: role
+    attributes:
+      label: Role
+      options:
+        - Customer (cliente)
+        - Store staff (loja)
+        - Courier (estafeta)
+        - Administrator (admin)
+        - Not logged in
+    validations:
+      required: false
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: "Chrome 131, Windows 11, desktop / mobile"
+    validations:
+      required: false
+
+  - type: textarea
+    id: dod
+    attributes:
+      label: Definition of Done
+      value: |
+        - [ ] Bug reproduced and root cause identified
+        - [ ] Fix verified with the steps above
+        - [ ] No errors in the browser console or server log
+        - [ ] Commit references this issue (`fixes #n`)
+    validations:
+      required: true
