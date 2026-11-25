@@ -1,5 +1,7 @@
+const mongoose = require("mongoose");
 const Order = require("../models/Order");
 const Product = require("../models/Product");
+const DeliveryMethod = require("../models/DeliveryMethod");
 
 exports.listarEncomendas = async (req, res, next) => {
   try {
@@ -26,7 +28,23 @@ exports.listarMinhasEncomendas = async (req, res, next) => {
 exports.criarEncomenda = async (req, res, next) => {
   try {
     const clienteId = req.user.id;
-    const { itens, metodoEntrega, custoEntrega } = req.body;
+    // custoEntrega is ignored on purpose: the delivery cost always comes from the database
+    const { itens, metodoEntrega } = req.body;
+
+    // Validate the delivery method before touching any stock
+    if (!mongoose.isValidObjectId(metodoEntrega)) {
+      return res.status(400).json({ message: "Método de entrega inválido" });
+    }
+
+    const metodo = await DeliveryMethod.findById(metodoEntrega);
+
+    if (!metodo || !metodo.ativo) {
+      return res
+        .status(400)
+        .json({ message: "Método de entrega inexistente ou inativo" });
+    }
+
+    const custoEntrega = metodo.custo;
 
     const itensProcessados = [];
     for (const item of itens) {
@@ -76,13 +94,13 @@ exports.criarEncomenda = async (req, res, next) => {
       total += itemProcessado.precoUnitario * itemProcessado.quantidade;
     }
 
-    total += Number(custoEntrega);
+    total += custoEntrega;
 
     const encomenda = await Order.create({
       cliente: clienteId,
       itens: itensProcessados,
       total,
-      metodoEntrega,
+      metodoEntrega: metodo._id,
       custoEntrega,
     });
 

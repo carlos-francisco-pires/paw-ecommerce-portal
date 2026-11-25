@@ -74,7 +74,6 @@ export class Checkout implements OnInit, OnDestroy {
         configuracaoEscolhida: item.configuracaoEscolhida,
       })),
       metodoEntrega: this.checkoutForm.value.metodoEntrega,
-      custoEntrega: this.getCustoEntrega(),
     };
 
     this.order.criar(dados).subscribe({

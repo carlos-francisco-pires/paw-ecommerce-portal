@@ -36,15 +36,13 @@ const checkRole = require("../middleware/CheckRole");
  *                       example: []
  *               metodoEntrega:
  *                 type: string
+ *                 description: ID de um método de entrega ativo (o custo é lido da base de dados)
  *                 example: 670abc123def73829393948
- *               custoEntrega:
- *                 type: number
- *                 example: 5
  *     responses:
  *       201:
- *         description: Encomenda criada com sucesso
+ *         description: Encomenda criada com sucesso (custoEntrega vem do método de entrega guardado na base de dados)
  *       400:
- *         description: Stock insuficiente ou dados inválidos
+ *         description: Stock insuficiente, dados inválidos ou método de entrega inexistente/inativo
  *       404:
  *         description: Algum produto não foi encontrado
  */
