@@ -31,6 +31,22 @@ exports.criarEncomenda = async (req, res, next) => {
     // custoEntrega is ignored on purpose: the delivery cost always comes from the database
     const { itens, metodoEntrega } = req.body;
 
+    // Validate the items before any database work or stock change
+    if (!Array.isArray(itens) || itens.length === 0) {
+      return res
+        .status(400)
+        .json({ message: "A encomenda tem de ter pelo menos um item" });
+    }
+
+    for (let i = 0; i < itens.length; i++) {
+      const item = itens[i];
+      if (!item || !Number.isInteger(item.quantidade) || item.quantidade < 1) {
+        return res.status(400).json({
+          message: `Item ${i + 1} (produto ${item?.produtoId}): a quantidade tem de ser um número inteiro maior ou igual a 1`,
+        });
+      }
+    }
+
     // Validate the delivery method before touching any stock
     if (!mongoose.isValidObjectId(metodoEntrega)) {
       return res.status(400).json({ message: "Método de entrega inválido" });

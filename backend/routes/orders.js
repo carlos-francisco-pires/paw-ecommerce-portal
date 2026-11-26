@@ -42,7 +42,7 @@ const checkRole = require("../middleware/CheckRole");
  *       201:
  *         description: Encomenda criada com sucesso (custoEntrega vem do método de entrega guardado na base de dados)
  *       400:
- *         description: Stock insuficiente, dados inválidos ou método de entrega inexistente/inativo
+ *         description: Lista de itens vazia, quantidade inválida (tem de ser inteiro >= 1), stock insuficiente ou método de entrega inexistente/inativo
  *       404:
  *         description: Algum produto não foi encontrado
  */
