@@ -40,7 +40,12 @@ exports.criarEncomenda = async (req, res, next) => {
 
     for (let i = 0; i < itens.length; i++) {
       const item = itens[i];
-      if (!item || !Number.isInteger(item.quantidade) || item.quantidade < 1) {
+      if (!item || !mongoose.isValidObjectId(item.produtoId)) {
+        return res.status(400).json({
+          message: `Item ${i + 1}: o ID do produto é inválido`,
+        });
+      }
+      if (!Number.isInteger(item.quantidade) || item.quantidade < 1) {
         return res.status(400).json({
           message: `Item ${i + 1} (produto ${item?.produtoId}): a quantidade tem de ser um número inteiro maior ou igual a 1`,
         });
@@ -80,23 +85,49 @@ exports.criarEncomenda = async (req, res, next) => {
 
       let precoUnidade = produto.preco;
 
+      // A missing configuration is treated as an empty list
+      const escolhas = item.configuracaoEscolhida ?? [];
+      if (!Array.isArray(escolhas)) {
+        return res.status(400).json({
+          message: `Produto ${produto.nome}: a configuração escolhida tem de ser uma lista`,
+        });
+      }
+
+      const configuracaoValidada = [];
+
       if (produto.configuravel) {
-        for (const escolha of item.configuracaoEscolhida) {
+        for (const escolha of escolhas) {
           const encontraOpcao = produto.opcoesConfiguracao.find(
-            (opcao) => opcao.nome === escolha.nome
+            (opcao) => opcao.nome === escolha?.nome
           );
+          if (!encontraOpcao) {
+            return res.status(400).json({
+              message: `Produto ${produto.nome}: a opção "${escolha?.nome}" não existe`,
+            });
+          }
+
           const encontraValor = encontraOpcao.valores.find(
             (valor) => valor.nome === escolha.valorEscolhido
           );
+          if (!encontraValor) {
+            return res.status(400).json({
+              message: `Produto ${produto.nome}: o valor "${escolha.valorEscolhido}" não existe na opção "${encontraOpcao.nome}"`,
+            });
+          }
 
           precoUnidade += encontraValor.precoExtra;
+          configuracaoValidada.push({
+            nome: encontraOpcao.nome,
+            valorEscolhido: encontraValor.nome,
+          });
         }
       }
 
       itensProcessados.push({
         produto: produto._id,
         quantidade: item.quantidade,
-        configuracaoEscolhida: item.configuracaoEscolhida || [],
+        // Only options validated against the product are saved
+        configuracaoEscolhida: configuracaoValidada,
         precoUnitario: precoUnidade,
       });
     }
